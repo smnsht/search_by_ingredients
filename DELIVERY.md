@@ -1,47 +1,50 @@
 # General Idea
 
-My idea is to build 2 classifiers using classifiers, available in scikit-learn library.
-I will evaluate several models and 2 vectorization techniques to find best solution.
+My idea is to build two classifiers using available models from the **scikit-learn** library. I will evaluate several models and two vectorization techniques to find the best solution.
 
-For training I am using ingredients dataset from kaggle: (forgot it's url).
-The dataset is downloaded and saved as food1.csv. 
+For training, I'm using an ingredients dataset from Kaggle (URL forgotten). The dataset has been downloaded and saved as **food1.csv**.
 
-The dataset does not indicates if the dataset is vegan or not, but we can infer this by analysing cholesterl - 
-anymal food always have cholesterol in it, while non-anymal food have zero cholesterol.
-One exception is eggs white, I am fixing this for ingredients containging "EGG,WHITE" (see code in diet_dataset.py).
+The dataset doesn't indicate whether an ingredient is vegan, but we can infer this by analyzing cholesterol levels. Animal products always contain cholesterol, while plant-based foods have zero cholesterol. One exception is egg whites, which I've addressed for ingredients containing "EGG,WHITE" (see code in **diet_dataset.py**).
 
-The Column 'Data.Carbohydrate' from the ingredients dataset holds amount of hydrocarbs per 100g, exactly what we need
-to determin if the ingredient is keto or not.
+The 'Data.Carbohydrate' column from the ingredients dataset holds the amount of carbohydrates per 100g, which is exactly what we need to determine if an ingredient is keto.
 
-After evaluation best trained models are serialized into *.pkl fils: 
-- **grid_rf_keto.pkl** (keto classifier)
-- **grid_rf_vegan.pkl** (vegan classifier)
+After evaluation, the best-trained models are serialized into **.pkl** files:
 
-The classifier just load them and using to answer if the meal is keto and/or vegan.
+* **grid\_rf\_keto.pkl** (keto classifier)
+* **grid\_rf\_vegan.pkl** (vegan classifier)
 
+The classifier simply loads these files and uses them to determine if a meal is keto and/or vegan.
 
-## Attached Jupeter notebooks
+---
 
-I've attached 2 notebooks - **06_TfidfVectorizer.ipynb** and **07_CountVectorizer.ipynb**.
-In each notebook several classifiers are evaluated agaings **groud_truth_sample.csv**.
+## Attached Jupyter Notebooks
 
-Best model/vectorizer found in this reserch - TfidfVectorizer/RandomForestClassifier, it achtived 81% accuracy score for both classifiers.
+I've attached two notebooks: **06\_TfidfVectorizer.ipynb** and **07\_CountVectorizer.ipynb**. In each notebook, several classifiers are evaluated against **ground\_truth\_sample.csv**.
 
+The best model/vectorizer combination found in this research is **TfidfVectorizer** with **RandomForestClassifier**, achieving an 81% accuracy score for both classifiers.
 
-### Running diet_classifiers.py locally
+---
 
-I have runned diet_classifiers.py locally, took a screenshot of results as an evidence - **nb/Screenshot_run1.png**.
-In order to run: invoke command python nb/src/diet_classifiers.py from the root folder. 
-The folder is importent, because my script must to find *.pkl files, and in order to do so it resolves related paths.
-**!!!After running locally I've altered path, so the script will run correctly on Docker!!!**
+### Running **diet\_classifiers.py** Locally
 
-### Running diet_classifiers.py in the Docker
+I've run **diet\_classifiers.py** locally and captured a screenshot of the results as evidence: **nb/Screenshot\_run1.png**. To run the script, execute `python nb/src/diet_classifiers.py` from the root folder. The folder is important because my script needs to locate the **.pkl** files, and it resolves related paths accordingly. **Note: After running locally, I altered the path so the script will run correctly on Docker.**
 
-I have runned diet_classifiers.py in the Docker, took a screenshot of results as an evidence - **nb/Screenshot_run2.png**.
-Delivery version adapted for Docker, to invoke script: python diet_classifiers.py, as shown on the screenshot.
+---
 
+### Running **diet\_classifiers.py** in Docker
 
-### Skipping implementation of **is_ingredient_keto** and **is_ingredient_vegan**
+I've run **diet\_classifiers.py** in Docker and captured a screenshot of the results as evidence: **nb/Screenshot\_run2.png**. The delivery version is adapted for Docker; to invoke the script, use `python diet_classifiers.py`, as shown in the screenshot.
 
-My classifiers are already works with lists, so implementing classifier for single ingredient is not required.
-I implemented **is_keto(list)** and **is_vegan(list)**, while commenting out mentioned 2 methods.
+---
+
+### Running **web** in Docker (broken)
+
+I tackled several problems while tring to lauch web Docker: source files are not copied to the image, connection to OpenConnect failed, etc...
+I tryed to to fix this - web/Docker is altered, but without success (OpenConnect connection failing), giving up on web Docker.
+In order to run web app locally: manually alter paths to *.pkl files in web/src/diet_classifiers.py
+
+---
+
+### Skipping Implementation of `is_ingredient_keto` and `is_ingredient_vegan`
+
+My classifiers already work with lists, so implementing classifiers for single ingredients is not required. I've implemented `is_keto(list)` and `is_vegan(list)` while commenting out the aforementioned two methods.

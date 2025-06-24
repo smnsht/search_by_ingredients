@@ -6,9 +6,14 @@ import pandas as pd
 ##########################################################################################
 import joblib
 
-# Load the serialized models
-rf_vegan_clf = joblib.load('/app/data/grid_rf_vegan.pkl')
-rf_keto_clf = joblib.load('/app/data/grid_rf_keto.pkl')
+# Load the serialized models on Docker
+#rf_vegan_clf = joblib.load('/app/data/grid_rf_vegan.pkl')
+#rf_keto_clf = joblib.load('/app/data/grid_rf_keto.pkl')
+
+# Load the serialized models on Windows
+base_dir = 'C:/Users/SimonShtock/source/search_by_ingredients/web/src'
+rf_vegan_clf = joblib.load(base_dir + '/grid_rf_vegan.pkl')
+rf_keto_clf = joblib.load(base_dir + '/grid_rf_keto.pkl')
 ###########################################################################################
 try:
     from sklearn.metrics import classification_report

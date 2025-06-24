@@ -20,7 +20,7 @@ COPY requirements.txt .
 
 # by Simon
 RUN mkdir -p /app/web
-COPY init.sh /app/web/
+COPY init.sh /app/
 COPY src /app/web/
 COPY src/*.pkl /app/data/
 
@@ -31,5 +31,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Command to run the application - make init.sh executable first
-CMD ["sh", "-c", "dos2unix web/init.sh && chmod +x web/init.sh && web/init.sh"]
-#CMD ["sh"]
+#CMD ["sh", "-c", "dos2unix ./init.sh && chmod +x ./init.sh && ./init.sh"]
+CMD ["sh"]
