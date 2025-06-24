@@ -5,15 +5,14 @@ from time import time
 import pandas as pd
 ##########################################################################################
 import joblib
+import os
 
-# Load the serialized models on Docker
-#rf_vegan_clf = joblib.load('/app/data/grid_rf_vegan.pkl')
-#rf_keto_clf = joblib.load('/app/data/grid_rf_keto.pkl')
+# Load the serialized models
+current_file_path = os.path.abspath(__file__)
+current_dir_path = os.path.dirname(current_file_path)
 
-# Load the serialized models on Windows
-base_dir = 'C:/Users/SimonShtock/source/search_by_ingredients/web/src'
-rf_vegan_clf = joblib.load(base_dir + '/grid_rf_vegan.pkl')
-rf_keto_clf = joblib.load(base_dir + '/grid_rf_keto.pkl')
+rf_vegan_clf = joblib.load(os.path.join(current_dir_path, 'vegan_clf.pkl'))
+rf_keto_clf = joblib.load(os.path.join(current_dir_path, 'keto_clf.pkl'))
 ###########################################################################################
 try:
     from sklearn.metrics import classification_report

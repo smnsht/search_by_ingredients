@@ -1,4 +1,5 @@
 import sys
+import os
 from argparse import ArgumentParser
 from typing import List
 from time import time
@@ -7,13 +8,12 @@ import pandas as pd
 import joblib
 import re
 
-# Load the serialized models - Windows
-#rf_vegan_clf = joblib.load('nb/data/grid_rf_vegan.pkl')
-#rf_keto_clf = joblib.load('nb/data/grid_rf_keto.pkl')
+# Load the serialized models
+current_file_path = os.path.abspath(__file__)
+current_dir_path = os.path.dirname(current_file_path)
 
-# Load the serialized models - Docker
-rf_vegan_clf = joblib.load('./grid_rf_vegan.pkl')
-rf_keto_clf = joblib.load('./grid_rf_keto.pkl')
+rf_vegan_clf = joblib.load(os.path.join(current_dir_path, 'vegan_clf.pkl'))
+rf_keto_clf = joblib.load(os.path.join(current_dir_path, 'keto_clf.pkl'))
 ###########################################################################################
 try:
     from sklearn.metrics import classification_report

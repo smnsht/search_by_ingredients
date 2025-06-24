@@ -22,7 +22,6 @@ COPY requirements.txt .
 RUN mkdir -p /app/web
 COPY init.sh /app/
 COPY src /app/web/
-COPY src/*.pkl /app/data/
 
 RUN pip install --no-cache-dir -r requirements.txt
 

@@ -20,6 +20,11 @@ def load_foods(path):
         {"Description": 'OLIVES,OIL', "Data.Carbohydrate": 0, 'Data.Cholesterol': 0},
         {"Description": 'SAUCE,SOY', "Data.Carbohydrate": 4.9, 'Data.Cholesterol': 0},
         {"Description": 'APPLES', "Data.Carbohydrate": 13.8, 'Data.Cholesterol': 0},        
+        {"Description": 'EGG', "Data.Carbohydrate": 0.0, 'Data.Cholesterol': 100},
+        {"Description": 'EGGS', "Data.Carbohydrate": 0.0, 'Data.Cholesterol': 100},
+        {"Description": 'BUTTER', "Data.Carbohydrate": 0.0, 'Data.Cholesterol': 100},   
+        {"Description": 'MILK,CASHEW', "Data.Carbohydrate": 2.0, 'Data.Cholesterol': 0},   
+        {"Description": 'MILK,COCONUT', "Data.Carbohydrate": 13.0, 'Data.Cholesterol': 0},         
     ])
 
     food_df = pd.concat([food_df, new_rows], ignore_index=True) 

@@ -27,7 +27,7 @@ The best model/vectorizer combination found in this research is **TfidfVectorize
 
 ### Running **diet\_classifiers.py** Locally
 
-I've run **diet\_classifiers.py** locally and captured a screenshot of the results as evidence: **nb/Screenshot\_run1.png**. To run the script, execute `python nb/src/diet_classifiers.py` from the root folder. The folder is important because my script needs to locate the **.pkl** files, and it resolves related paths accordingly. **Note: After running locally, I altered the path so the script will run correctly on Docker.**
+I've run **diet\_classifiers.py** locally and captured a screenshot of the results as evidence: **nb/Screenshot\_run1.png**. To run the script, execute `python nb/src/diet_classifiers.py --ground_truth nb/data/ground_truth_sample.csv` from the root folder. 
 
 ---
 
