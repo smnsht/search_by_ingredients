@@ -33,6 +33,13 @@ Best model/vectorizer found in this reserch - TfidfVectorizer/RandomForestClassi
 I have runned diet_classifiers.py locally, took a screenshot of results as an evidence - **nb/Screenshot_run1.png**.
 In order to run: invoke command python nb/src/diet_classifiers.py from the root folder. 
 The folder is importent, because my script must to find *.pkl files, and in order to do so it resolves related paths.
+**!!!After running locally I've altered path, so the script will run correctly on Docker!!!**
+
+### Running diet_classifiers.py in the Docker
+
+I have runned diet_classifiers.py in the Docker, took a screenshot of results as an evidence - **nb/Screenshot_run2.png**.
+Delivery version adapted for Docker, to invoke script: python diet_classifiers.py, as shown on the screenshot.
+
 
 ### Skipping implementation of **is_ingredient_keto** and **is_ingredient_vegan**
 

@@ -7,9 +7,13 @@ import pandas as pd
 import joblib
 import re
 
-# Load the serialized models
-rf_vegan_clf = joblib.load('nb/data/grid_rf_vegan.pkl')
-rf_keto_clf = joblib.load('nb/data/grid_rf_keto.pkl')
+# Load the serialized models - Windows
+#rf_vegan_clf = joblib.load('nb/data/grid_rf_vegan.pkl')
+#rf_keto_clf = joblib.load('nb/data/grid_rf_keto.pkl')
+
+# Load the serialized models - Docker
+rf_vegan_clf = joblib.load('./grid_rf_vegan.pkl')
+rf_keto_clf = joblib.load('./grid_rf_keto.pkl')
 ###########################################################################################
 try:
     from sklearn.metrics import classification_report
@@ -82,6 +86,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--ground_truth", type=str, default="nb/data/ground_truth_sample.csv")
-                        #default="/usr/src/data/ground_truth_sample.csv")
+    parser.add_argument("--ground_truth", type=str, default="/usr/src/data/ground_truth_sample.csv")
+                        #default="nb/data/ground_truth_sample.csv")
+                        
     sys.exit(main(parser.parse_args()))

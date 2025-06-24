@@ -1,6 +1,7 @@
 FROM python:3.11-slim
 
 WORKDIR /app
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -16,6 +17,13 @@ RUN curl -L https://argmax.nyc3.digitaloceanspaces.com/recipes/allrecipes.parque
 
 # Copy requirements first to leverage Docker cache
 COPY requirements.txt .
+
+# by Simon
+RUN mkdir -p /app/web
+COPY init.sh /app/web/
+COPY src /app/web/
+COPY src/*.pkl /app/data/
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 
@@ -23,4 +31,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Command to run the application - make init.sh executable first
-CMD ["sh", "-c", "dos2unix web/init.sh && chmod +x web/init.sh && ./web/init.sh"]
+CMD ["sh", "-c", "dos2unix web/init.sh && chmod +x web/init.sh && web/init.sh"]
+#CMD ["sh"]
